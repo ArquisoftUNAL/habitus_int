@@ -1,129 +1,3 @@
-<!-- <definitions name = "HabitusService"
-   targetNamespace = "http://www.habitus.com/wsdl/HabitusService.wsdl"
-   xmlns = "http://schemas.xmlsoap.org/wsdl/"
-   xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
-   xmlns:tns = "http://www.habitus.com/wsdl/HabitusService.wsdl"
-   xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
-
-   <type name = "Categories">
-      <sequence>
-         <element name = "id" type = "xsd:string"/>
-         <element name = "name" type = "xsd:string"/>
-      </sequence>
-    </type>
- 
-   <message name = "CategoriesByIdQueryRequest">
-      <part name = "catId" type = "xsd:string"/>
-   </message>
-
-   <message name = "CategoriesQueryRequest"></message>
-	
-   <message name = "CategoriesQueryResponse">
-        <part name = "categories" type = "tns:Categories"/>
-   </message>
-
-   <portType name = "Categories_Port">
-      <operation name = "CategoriesQueryById">
-         <input message = "tns:CategoriesByIdQueryRequest"/>
-         <output message = "tns:CategoriesQueryResponse"/>
-      </operation>
-
-      <operation name = "CategoriesQuery">
-         <input message = "tns:CategoriesQueryRequest"/>
-         <output message = "tns:CategoriesQueryResponse"/>
-      </operation>
-   </portType>
-
-   <binding name = "Categories_Binding" type = "tns:Categories_Port">
-      <soap:binding style = "rpc"
-         transport = "http://schemas.xmlsoap.org/soap/http"/>
-      <operation name = "CategoriesQueryById">
-         <soap:operation soapAction = "CategoriesQueryById"/>
-         <input>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "urn:examples:habitusService"
-               use = "encoded"/>
-         </input>
-		
-         <output>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "urn:examples:habitusService"
-               use = "encoded"/>
-         </output>
-      </operation>
-      <operation name = "CategoriesQuery">
-         <soap:operation soapAction = "CategoriesQuery"/>
-         <input>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "urn:examples:habitusService"
-               use = "encoded"/>
-         </input>
-		
-         <output>
-            <soap:body
-               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
-               namespace = "urn:examples:habitusService"
-               use = "encoded"/>
-         </output>
-      </operation>
-   </binding>
-
-   <service name = "Habitus_Service">
-      <documentation>WSDL File for Habitus</documentation>
-      <port binding = "tns:Categories_Binding" name = "Categories_Port">
-         <soap:address
-            location = "http://www.habitus.com/CategoriesQuery/" />
-      </port>
-   </service>
-</definitions> -->
-
-<!-- <definitions name = "MyService"
-   targetNamespace = "http://www.examples.com/wsdl/MyService.wsdl"
-   xmlns = "http://schemas.xmlsoap.org/wsdl/"
-   xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
-   xmlns:tns = "http://www.examples.com/wsdl/MyService.wsdl"
-   xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
-
-   <message name = "MyFunctionRequest">
-      <part name = "testParam" type = "xsd:string"/>
-   </message>
-   <message name = "MyFunctionResponse">
-      <part name = "status" type = "xsd:string"/>
-   </message>
-   <portType name = "MyPort">
-      <operation name = "MyFunction">
-         <input message = "tns:MyFunctionRequest"/>
-         <output message = "tns:MyFunctionResponse"/>
-      </operation>
-   </portType>
-
-   <binding name = "MyFunction_Binding" type = "tns:MyPort">
-      <soap:binding style = "rpc"
-         transport = "http://schemas.xmlsoap.org/soap/http"/>
-      <operation name = "MyFunction">
-         <soap:operation soapAction = "MyFunction"/>
-         <input>
-            <soap:body encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/" namespace = "urn:examples:MyService" use = "encoded"/>
-         </input>
-         <output>
-            <soap:body encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/" namespace = "urn:examples:MyService" use = "encoded"/>
-         </output>
-      </operation>
-   </binding>
-
-   <service name = "MyService">
-      <documentation>WSDL File for MyService</documentation>
-      <port binding = "tns:MyFunction_Binding" name = "MyPort">
-         <soap:address
-            location = "http://www.examples.com/MyFunction/" />
-      </port>
-   </service>
-
-</definitions> -->
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- <definitions> must be the root of the WSDL document -->
@@ -144,8 +18,8 @@
       <s:element name="Category">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:string"/>
-            <s:element minOccurs="1" maxOccurs="1" name="name" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="cat_id" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="cat_name" type="s:string"/>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -242,10 +116,10 @@
   <!-- SERVICE:  -->
   <wsdl:service name="HabitusService">
     <wsdl:port name="HabitusServiceSoapPort" binding="tns:HabitusServiceSoapBinding">
-      <soap:address location="http://localhost:9000/wsdl"/>
+      <soap:address location="https://habitus-int-ik25vlw3ta-rj.a.run.app/wsdl"/>
     </wsdl:port>
     <wsdl:port name="HabitusServiceSoap12Port" binding="tns:HabitusServiceSoap12Binding">
-      <soap12:address location="http://localhost:9000/wsdl"/>
+      <soap12:address location="https://habitus-int-ik25vlw3ta-rj.a.run.app/wsdl"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
