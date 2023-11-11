@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN 
+
 EXPOSE 9000
 
-CMD ["npm", "start"]
+CMD /bin/bash -c "sh update_target.sh && npm start"

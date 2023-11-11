@@ -14,42 +14,38 @@
 
   <!-- WSDL TYPES: definition of the data types that are used in the web service -->
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="Category">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="cat_id" type="s:string"/>
-            <s:element minOccurs="1" maxOccurs="1" name="cat_name" type="s:string"/>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CategoriesQueryByIdRequest">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:string"/>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CategoriesQueryResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="unbounded" name="categories" type="tns:Category"/>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
+    <s:schema targetNamespace="http://tempuri.org/">
+      <s:complexType name="Category">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="cat_id" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="cat_name" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CategoriesQueryByIdRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CategoriesQueryResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="category" type="tns:Category"/>
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   
   <!-- MESSAGES: defines the data being exchanged between the service and client -->
   <wsdl:message name="CategoriesQueryByIdSoapIn">
-    <wsdl:part name="parameters" element="tns:CategoriesQueryByIdRequest"/>
+    <wsdl:part name="parameters" type="tns:CategoriesQueryByIdRequest"/>
   </wsdl:message>
 
   <wsdl:message name="CategoriesQuerySoapIn">
   </wsdl:message>
 
   <wsdl:message name="CategoriesQuerySoapOut">
-    <wsdl:part name="parameters" element="tns:CategoriesQueryResponse"/>
+    <wsdl:part 
+      name="response" type="tns:CategoriesQueryResponse"
+    />
   </wsdl:message>
 
   <!-- PORT TYPES: defines the complete communication operation (one way/round trip) -->
@@ -116,10 +112,10 @@
   <!-- SERVICE:  -->
   <wsdl:service name="HabitusService">
     <wsdl:port name="HabitusServiceSoapPort" binding="tns:HabitusServiceSoapBinding">
-      <soap:address location="https://habitus-int-ik25vlw3ta-rj.a.run.app/wsdl"/>
+      <soap:address location="http://localhost:9000/wsdl"/>
     </wsdl:port>
     <wsdl:port name="HabitusServiceSoap12Port" binding="tns:HabitusServiceSoap12Binding">
-      <soap12:address location="https://habitus-int-ik25vlw3ta-rj.a.run.app/wsdl"/>
+      <soap12:address location="http://localhost:9000/wsdl"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

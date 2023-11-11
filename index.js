@@ -12,7 +12,13 @@ app.use(bodyParser.raw({ type: function () { return true; }, limit: '5mb' }));
 app.listen(SERVER_PORT, function () {
     //Note: /wsdl route will be handled by soap module
     //and all other routes & middleware will continue to work
-    soap.listen(app, '/wsdl', habitusService, xml, () => {
+    const server = soap.listen(app, '/wsdl', habitusService, xml, () => {
         console.log('server initialized, listening on port ' + SERVER_PORT + '...');
     });
+
+    server.log = function (type, data) {
+        //console.log(type, data);
+    };
+
+
 });
