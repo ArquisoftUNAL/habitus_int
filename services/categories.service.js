@@ -4,43 +4,36 @@ const { CATEGORIES_QUERY, CATEGORIES_QUERY_BY_ID } = require('../graphql/categor
 const { API_GATEWAY_URL } = require('../config');
 
 const getCategories = (args, callback) => {
-    return callback({
-        response: {
-            category: [
-                {
-                    cat_name: "Category 1",
-                    cat_id: "1"
-                },
-                {
-                    cat_name: "Category 2",
-                    cat_id: "1"
+    request(API_GATEWAY_URL, CATEGORIES_QUERY)
+        .then(data => {
+            return callback({
+                response: {
+                    category: data.categories
                 }
-            ]
-        }
-    })
-    // request(API_GATEWAY_URL, CATEGORIES_QUERY)
-    //     .then(data => {
-    //         console.log("Data", data);
-    //         return callback({
-    //             categories: data.categories
-    //         })
-    //     })
-    //     .catch(err => {
-    //         console.log("Error", err);
-    //         return callback({
-    //             categories: []
-    //         })
-    //     });
+            })
+        })
+        .catch(err => {
+            console.log("Error", err);
+            return callback({
+                response: {
+                    category: []
+                }
+            })
+        });
 }
 
 const getCategoryById = (args, callback) => {
     request(API_GATEWAY_URL, CATEGORIES_QUERY_BY_ID, { id: args.id })
         .then(data => callback({
-            categories: data.categoryById
+            response: {
+                category: data.categoryById
+            }
         }))
         .catch(err => {
             return callback({
-                categories: []
+                response: {
+                    category: []
+                }
             })
         });
 }

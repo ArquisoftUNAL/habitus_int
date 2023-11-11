@@ -1,3 +1,4 @@
+<!-- Request -->
 <?xml version="1.0" encoding="utf-8"?>
     <soap:Envelope 
         xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
@@ -9,3 +10,23 @@
             <CategoriesQuerySoapIn/>
         </soap:Body>
     </soap:Envelope>
+
+
+<!-- Response -->
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"  xmlns:tns="http://tempuri.org/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/">
+    <soap:Body>
+        <CategoriesQuerySoapOut>
+            <response>
+                <category>
+                    <cat_name>Category 1</cat_name>
+                    <cat_id>1</cat_id>
+                </category>
+                <category>
+                    <cat_name>Category 2</cat_name>
+                    <cat_id>1</cat_id>
+                </category>
+            </response>
+        </CategoriesQuerySoapOut>
+    </soap:Body>
+</soap:Envelope>
