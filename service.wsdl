@@ -112,10 +112,10 @@
   <!-- SERVICE:  -->
   <wsdl:service name="HabitusService">
     <wsdl:port name="HabitusServiceSoapPort" binding="tns:HabitusServiceSoapBinding">
-      <soap:address location="http://localhost:9000/wsdl"/>
+      <soap:address location="TARGET_HOST"/>
     </wsdl:port>
     <wsdl:port name="HabitusServiceSoap12Port" binding="tns:HabitusServiceSoap12Binding">
-      <soap12:address location="http://localhost:9000/wsdl"/>
+      <soap12:address location="TARGET_HOST"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
